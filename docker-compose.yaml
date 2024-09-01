@@ -1,0 +1,22 @@
+services:
+  tsgroonga:
+    container_name: tsgroonga
+    image: tsgroonga
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      GROONGA_HOST: ${GROONGA_HOST}
+      GROONGA_PORT: ${GROONGA_PORT}
+      GROONGA_ENTRYPOINT: ${GROONGA_ENTRYPOINT}
+      NPM_TOKEN: ${NPM_TOKEN}
+    depends_on:
+      - groonga
+  groonga:
+    container_name: tsgroonga-groonga
+    image: tsgroonga-groonga
+    build:
+      context: groonga
+      dockerfile: Dockerfile
+    ports:
+      - 20041:10041

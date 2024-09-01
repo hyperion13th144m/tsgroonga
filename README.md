@@ -1,2 +1,4 @@
 # tsgroonga
-a library for groonga via http
+a client library for groonga via http
+
+private use.

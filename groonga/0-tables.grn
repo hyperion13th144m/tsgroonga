@@ -1,0 +1,39 @@
+#-- coding: utf-8 --
+
+table_create --name Other --flags TABLE_HASH_KEY --key_type ShortText
+  column_create --table Other --name property11 --type Int8
+  column_create --table Other --name property12 --type ShortText
+  column_create --table Other --name property13 --type Int32 --flags COLUMN_VECTOR
+
+
+table_create --name Test --flags TABLE_HASH_KEY --key_type ShortText
+  column_create --table Test --name property1 --type Int8
+  column_create --table Test --name property2 --type ShortText
+  column_create --table Test --name property3 --type Int32 --flags COLUMN_VECTOR
+  column_create --table Test --name reference --type Other
+
+
+
+load --table Test [
+  { "_key": "Key1", "property1": 10,  "property2": "hoge", "property3": [ 0, 1, 2 ] },
+  { "_key": "Key2", "property1": 20,  "property2": "fuga", "property3": [ 10, 11, 12 ] },
+  { "_key": "Key3", "property1": 100, "property2": "piyo", "property3": [ 20, 21, 22 ] },
+  { "_key": "Key4", "property1": 5,   "property2": "aieuo nani nuneno", "property3": [ 30, 31, 32 ] },
+  { "_key": "Key5", "property1": 50,  "property2": "kakiku keko", "property3": [ 40, 41, 42 ] },
+]
+
+load --table Other [
+  { "_key": "Key11", "property11": 910,  "property12": "Xhoge", "property13": [ 90, 18, 12 ] },
+  { "_key": "Key12", "property11": 920,  "property12": "Yfuga", "property13": [ 910, 181, 8012 ] },
+  { "_key": "Key23", "property11": 9100, "property12": "Zpiyo", "property13": [ 290, 281, 222 ] },
+  { "_key": "Key24", "property11": 95,   "property12": "Aaieuo nani nuneno", "property13": [ 9830, 3981, 3982 ] },
+  { "_key": "Key25", "property11": 950,  "property12": "Fkakiku keko", "property13": [ 48010, 41081, 10842 ] },
+]
+
+load --table Test [
+  { "_key": "Key1", "reference": "Key11" },
+  { "_key": "Key2", "reference": "Key12" },
+  { "_key": "Key3", "reference": "Key23" },
+  { "_key": "Key4", "reference": "Key24" },
+  { "_key": "Key5", "reference": "Key25" },
+]
