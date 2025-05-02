@@ -6,6 +6,7 @@
     "types": "dist/index.d.ts",
     "license": "MIT",
     "publishConfig": {
+        "@hyperion13th144m:registry": "https://npm.pkg.github.com",
         "access": "public"
     },
     "devDependencies": {
@@ -31,6 +32,7 @@
         "test": "jest",
         "test:w": "jest --watch",
         "build": "tsc --project tsconfig.build.json",
+        "build:pack": "npm run build && npm pack --pack-destination ./pkgs",
         "version:patch": "npm version patch",
         "version:minor": "npm version minor",
         "version:major": "npm version major",

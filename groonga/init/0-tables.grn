@@ -1,13 +1,13 @@
 #-- coding: utf-8 --
 
 table_create --name Other --flags TABLE_HASH_KEY --key_type ShortText
-  column_create --table Other --name property11 --type Int8
+  column_create --table Other --name property11 --type Int32
   column_create --table Other --name property12 --type ShortText
   column_create --table Other --name property13 --type Int32 --flags COLUMN_VECTOR
 
 
 table_create --name Test --flags TABLE_HASH_KEY --key_type ShortText
-  column_create --table Test --name property1 --type Int8
+  column_create --table Test --name property1 --type Int32
   column_create --table Test --name property2 --type ShortText
   column_create --table Test --name property3 --type Int32 --flags COLUMN_VECTOR
   column_create --table Test --name reference --type Other

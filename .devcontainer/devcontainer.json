@@ -22,12 +22,10 @@
 			"extensions": [
 				"EditorConfig.EditorConfig",
 				"MS-CEINTL.vscode-language-pack-ja",
-				"ms-azuretools.vscode-docker",
-				"GitHub.copilot",
-				"eamodio.gitlens"
+				"ms-azuretools.vscode-docker"
 			]
 		}
-	}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -48,5 +46,5 @@
 	// "customizations": {},
 
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "devcontainer"
+	"remoteUser": "node"
 }
