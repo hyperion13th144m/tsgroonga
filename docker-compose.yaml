@@ -6,17 +6,17 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      GROONGA_HOST: ${GROONGA_HOST}
-      GROONGA_PORT: ${GROONGA_PORT}
-      GROONGA_ENTRYPOINT: ${GROONGA_ENTRYPOINT}
-      NPM_TOKEN: ${NPM_TOKEN}
-    depends_on:
-      - groonga
+      GROONGA_HOST: groonga
+      GROONGA_PORT: 10041
+      GROONGA_ENTRYPOINT: /d
+
   groonga:
     container_name: tsgroonga-groonga
-    image: tsgroonga-groonga
-    build:
-      context: groonga
-      dockerfile: Dockerfile
+    image: groonga/groonga:15.0.4-debian
     ports:
       - 20041:10041
+    volumes:
+      - ./groonga/log:/var/log/groonga
+      - ./groonga/init:/var/lib/groonga/initialize
+    environment:
+      - GROONGA_DB=/tmp/db/db
