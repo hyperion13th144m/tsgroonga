@@ -62,19 +62,38 @@ export class GroongaSelectResult extends GroongaResult {
             this.records = recordPart.slice(2);
         }
         if (this.body.length >= 2 && drilldownColumns) { // if drilldown exists
-            // drilldownPart = [
-            //   DRILLDOWNS1, DRILLDOWNS2, ...
+            // const drilldownPart = [
+            //   [
+            //     [3],  // number of drilldown
+            //     [["_key", "ShortText"],["_nsubrecs", "Int32"]], // drilldown column spec
+            //     [".org", 3 ],   // drilldownsPart.slice(2)
+            //     [".net", 2 ],
+            //     [".com", 1]
+            //   ],
+            //   [
+            //     [2],  // number of drilldown
+            //     [["_key", "ShortText"],["_nsubrecs", "Int32"]], // drilldown column spec
+            //     ["hoge", 3 ],   // drilldownsPart.slice(2)
+            //     ["fuga", 1 ],
+            //   ]
             // ]
-            // DRILLDOWNS1 = [
-            //   [3],  // number of drilldown
-            //   [["_key", "ShortText"],["_nsubrecs", "Int32"]], // drilldown column spec
-            //   [".org", 3 ],   // drilldownsPart.slice(2)
-            //   [".net", 3 ],
-            //   [".com", 3]
-            // ]
+
+            // this order must be same as the params given to SelectCommand.drilldown
+            // // drilldownColumns = [ COLUMN1, COLUMN2 ]
+
+            // this.drilldowns = {
+            //     COLUMN1: [
+            //         { value: '.org', count: 3 },
+            //         { value: '.net', count: 2 },
+            //         { value: '.com', count: 1 },
+            //     ],
+            //     COLUMN2: [
+            //         { value: 'hoge', count: 3 },
+            //         { value: 'fuga', count: 1 },
+            //     ]
+            // }
             const drilldownsParts = this.body.slice(1);
             assert(drilldownColumns.length == drilldownsParts.length);
-
             this.drilldowns = zip(drilldownColumns, drilldownsParts).map(([columnName, part]) => {
                 const values = part.slice(2).map((record: [string, number]) => ({ value: record[0], count: record[1] }));
                 const name = columnName as string;

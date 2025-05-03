@@ -6,15 +6,14 @@ import { type FilterType } from "./filter";
 import { type GroongaTableType } from "../../table";
 import { type GroongaColumn } from '../../column';
 
-export const SelectHelper = {
-    asc: <T>(column: T) => ({ column: column, order: 'desc' } as SortType<T>),
-    desc: <T>(column: T) => ({ column: column, order: 'desc' } as SortType<T>),
-};
 
 type SortType<T> = {
     column: T,
     order: 'asc' | 'desc'
 }
+
+export const asc = <T>(column: T) => ({ column: column, order: 'asc' } as SortType<T>);
+export const desc = <T>(column: T) => ({ column: column, order: 'desc' } as SortType<T>);
 
 type DrilldownType<C> = {
     [K in keyof C]: C[K] extends (infer U)
@@ -94,7 +93,7 @@ export class SelectCommand<C extends GroongaColumns> {
     /**
     *
     * @param query text
-    * @returns Query
+    * @returns SelectCommand
     */
     query(query: QueryType) {
         this._params.query = query.eval();
@@ -104,7 +103,7 @@ export class SelectCommand<C extends GroongaColumns> {
     /**
      * Specifies the filter text. Normally, it is used for complex search conditions.
      * @param expr
-     * @returns
+     * @returns SelectCommand
      */
     filter(expr: FilterType) {
         this._params.filter = expr.eval();
@@ -116,10 +115,23 @@ export class SelectCommand<C extends GroongaColumns> {
         return this;
     }
 
+
+    /**
+      * Specifies sort keys for drilldown outputs.
+      * @param sortKeys
+      * @returns SelectCommand
+      */
+    drilldownSortKeys(sortKeys: SortType<keyof C>[]){
+        this._params.drilldown_sort_keys = sortKeys.map(s =>
+            `${s.order == 'desc' ? '-' : ''}${this._table[s.column].columnName}`
+        ).join(',');
+        return this;
+    }
+
     /**
       * Specifies the max number of output records. if the number of matched records is less than limit, all records are outputted.
       * @param limit the max number of output records.
-      * @returns Query
+      * @returns SelectCommand
       */
     drilldownLimit(limit: number) {
         this._params.drilldown_limit = limit;
@@ -129,7 +141,7 @@ export class SelectCommand<C extends GroongaColumns> {
     /**
      * Specifies offset to determine output records range.
      * @param offset zero-based number. 1 means output range is started from the 2nd record.
-     * @returns Query
+     * @returns SelectCommand
      */
     drilldownOffset(offset: number) {
         this._params.drilldown_offset = offset;
@@ -172,7 +184,13 @@ export class SelectCommand<C extends GroongaColumns> {
             records: records,
         }
     }
+//
 
+    /**
+     * returns drilldown.
+     * type params must be same as the params given to SelectCommand.drilldown
+     * @returns 
+     */
     getDrilldown<D extends keyof C>() {
         if (!this._drilldown)
             throw Error('no drilldown');

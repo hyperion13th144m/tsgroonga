@@ -20,6 +20,15 @@ load --table Test [
   { "_key": "Key3", "property1": 100, "property2": "piyo", "property3": [ 20, 21, 22 ] },
   { "_key": "Key4", "property1": 5,   "property2": "aieuo nani nuneno", "property3": [ 30, 31, 32 ] },
   { "_key": "Key5", "property1": 50,  "property2": "kakiku keko", "property3": [ 40, 41, 42 ] },
+  { "_key": "Key6", "property1": 20,  "property2": "fuga", "property3": [ 10, 11, 12, 13 ] },
+  { "_key": "Key7", "property1": 30,  "property2": "fuga", "property3": [ 20, 21, 22 ] },
+  { "_key": "Key8", "property1": 40,  "property2": "fuga", "property3": [ 30, 31, 32 ] },
+  { "_key": "Key9", "property1": 50,  "property2": "fuga", "property3": [ 40, 41, 42 ] },
+  { "_key": "Key10", "property1": 100,  "property2": "hoge", "property3": [ 100, 101, 102 ] },
+  { "_key": "Key11", "property1": 110,  "property2": "hoge", "property3": [ 100, 101, 102 ] },
+  { "_key": "Key13", "property1": 200, "property2": "piyo", "property3": [ 320, 231, 322 ] },
+  { "_key": "Key20", "property1": 150,  "property2": "pon", "property3": [ 1800, 1701, 1402 ] },
+  { "_key": "Key21", "property1": 3150,  "property2": "pon", "property3": [ 9800, 1121, 8242 ] },
 ]
 
 load --table Other [
