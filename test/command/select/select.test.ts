@@ -46,9 +46,9 @@ describe('SelectCommand', () => {
     it("sort_keys()", () => {
         const q = select.sortKeys([
             desc('property1'),
-            desc('property2')
+            asc('property2')
         ])
-        expect(q.params['sort_keys']).toEqual('-property1,-property2');
+        expect(q.params['sort_keys']).toEqual('-property1,property2');
     });
 
     it("query(keyword)", () => {

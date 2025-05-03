@@ -72,7 +72,8 @@ groongaTable creates table schema.
 
 ## Usage
 ### Client creation
-create client for connecting Groonga server.
+create client for connecting to Groonga server.
+
 ```typescript
 import { Groonga } from '@hyperion13th144m/tsgroonga';
 
@@ -81,7 +82,8 @@ const groonga = new Groonga('groonga', 10041);
 ```
 
 ### Table creation
-create table schema using groongaTable. this function DO NOT CREATE actual table to Groonga server. the schema is used for select data for groonga.
+groongaTable function creates table schema. this function DO NOT CREATE actual table to Groonga server. the schema is used for select command.
+
 ```typescript
 import {
     groongaTable, key, text, numeric, nsubrecs, bool
@@ -110,7 +112,7 @@ const test = groongaTable('Test', {
 ```
 
 ### Query setup
-build query with using groonga object and helper functions, Query, Filter, asc and desc. if column name with quotes are wrong, typescript warns it is wrong name.
+you can build query with using groonga object and helper functions, Query, Filter, asc and desc. typescript will detect wrong column name with quotes.
 
 ```typescript
 import { Query as Q, Filter as F, asc, desc } from '@hyperion13th144m/tsgroonga';
@@ -124,9 +126,7 @@ const q = groonga.select(test)
         F.match(test.prop2, F.keyword('fuga')),
     ]))
     .sortKeys([
-        asc('prop1'),
-        desc('prop2'),
-        asc('prop3'),
+        asc('prop1'), desc('prop2'), asc('prop3'),
     ])
     .drilldown(['prop1', 'prop2'])
     .drilldownSortKeys([desc('recs'), desc('key')]);
@@ -134,6 +134,7 @@ const q = groonga.select(test)
 
 ### Query and Results
 ####  (A) query and print parameters
+
 ```typescript
 // print parameters sent to Groonga for debug
 console.log(q.params);
@@ -141,6 +142,7 @@ console.log(q.params);
 // actually send select command to Groonga
 const res = await q.commit();
 ```
+
 #### (A) output
 ```bash
 {
@@ -198,6 +200,7 @@ drilldown.prop2.forEach((v) => {
     console.log(v.value, v.count);
 });
 ```
+
 #### (C) output
 ```bash
 20 2
