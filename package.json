@@ -1,15 +1,17 @@
 {
     "name": "@hyperion13th144m/tsgroonga",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "description": "client library for Groonga",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "license": "MIT",
     "publishConfig": {
-        "@hyperion13th144m:registry": "https://npm.pkg.github.com"
+        "registry": "https://registry.npmjs.org/",
+        "access": "public"
     },
     "repository": {
-        "url": "https://github.com/hyperion13th144m/tsgroonga.git"
+        "type": "git",
+        "url": "git+https://github.com/hyperion13th144m/tsgroonga.git"
     },
     "devDependencies": {
         "@eslint/js": "^9.23.0",
