@@ -1,6 +1,6 @@
 {
     "name": "@hyperion13th144m/tsgroonga",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "description": "client library for Groonga",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
