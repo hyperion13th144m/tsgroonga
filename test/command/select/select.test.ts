@@ -2,7 +2,7 @@ import { getGroongaClient } from '~/client';
 import { key, text } from "~/column";
 import { Query as Q } from "~/commands/select/query";
 import { Filter as F } from "~/commands/select/filter";
-import { SelectCommand, SelectHelper as S } from "~/commands/select/select";
+import { SelectCommand, asc, desc } from "~/commands/select/select";
 import { groongaTable } from "~/table";
 
 
@@ -45,8 +45,8 @@ describe('SelectCommand', () => {
 
     it("sort_keys()", () => {
         const q = select.sortKeys([
-            S.desc('property1'),
-            S.desc('property2')
+            desc('property1'),
+            desc('property2')
         ])
         expect(q.params['sort_keys']).toEqual('-property1,-property2');
     });
