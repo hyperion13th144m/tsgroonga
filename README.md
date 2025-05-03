@@ -4,10 +4,9 @@ Nodejs package for groonga written in typescript.
 private use.
 
 ## Requirements
-### tsgroonga can be available with
  - nodejs v22.15
  - typescript v5.5
- - groonga
+ - groonga v15
 
 ### Preparation
 ### init typescript project and install pacakges
@@ -72,7 +71,7 @@ groongaTable creates table schema.
 
 ## Usage
 ### Client creation
-create client for connecting to Groonga server.
+create client for connecting to Groonga server. the client supports only http.
 
 ```typescript
 import { Groonga } from '@hyperion13th144m/tsgroonga';
