@@ -44,6 +44,7 @@ async function main() {
     drilldown.prop1.forEach((v) => {
         console.log(v.value, v.count);
     });
+    console.log('====================');
     drilldown.prop2.forEach((v) => {
         console.log(v.value, v.count);
     });
