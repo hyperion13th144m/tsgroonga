@@ -1,7 +1,7 @@
 # tsgroonga
 Nodejs package for groonga written in typescript.
 
-private use.
+support only select command.
 
 ## Requirements
  - nodejs v22.15
@@ -14,6 +14,7 @@ private use.
 ```bash
 $ yarn init
 $ yarn add -D typescript
+$ yarn tsc --init
 ```
 
 ### invoke Groonga server, create Tables and load data.
