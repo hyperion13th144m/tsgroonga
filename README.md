@@ -1,7 +1,6 @@
 # tsgroonga
 Nodejs package for groonga written in typescript.
 
-private use.
 
 ## Requirements
  - nodejs v22.15
@@ -190,7 +189,7 @@ Key11 110 hoge [ 100, 101, 102 ]
 // the type parameters of getDrilldown must be same to drilldown method of SelectCommand.
 const drilldown = q.getDrilldown<'prop1' | 'prop2'>()
 
-// the tool also can show you proper properties of 'drilldown'.
+// the tool can also show you proper properties of 'drilldown'.
 drilldown.prop1.forEach((v) => {
     console.log(v.value, v.count);
 });
