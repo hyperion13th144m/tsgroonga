@@ -1,19 +1,20 @@
 # tsgroonga
 Nodejs package for groonga written in typescript.
 
-support only select command.
+support only select command and its several options.
 
 ## Requirements
  - nodejs v22.15
  - typescript v5.5
  - groonga v15
 
-### Preparation
+## Installation
 ### init typescript project and install pacakges
 
 ```bash
 $ yarn init
 $ yarn add -D typescript
+$ yarn add @hyperion13th144m/tsgroonga
 $ yarn tsc --init
 ```
 
@@ -42,33 +43,6 @@ load --table Test [
 ]
 $ groonga --file data.grn PATH_TO_DB
 ```
-
-## Installation
-```bash
-$ yarn add @hyperion13th144m/tsgroonga
-```
-
-## API
-### SelectCommand
- SelectCommand supports 'select' command with several options for Groonga. The options are implemented as methods of SelectCommand. The method as follows.
- - select command options
-   - limit
-   - offset
-   - outputColumns
-   - matchColumns
-   - sortKeys
-   - query
-   - filter
-   - drilldown
-   - drilldownSortKeys
-   - drilldownLimit
-   - drilldownOffset
-- other methods
-   - commit
-   - getDrilldowns
-
-### groongaTable
-groongaTable creates table schema.
 
 ## Usage
 ### Client creation
